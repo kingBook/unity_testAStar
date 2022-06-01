@@ -76,7 +76,7 @@ public class GridBase : MonoBehaviour
                 }
                 int tempX = node.m_GridX + i;
                 int tempY = node.m_GridY + j;
-                if (tempX < m_GridCountX && tempX > 0 && tempY > 0 && tempY < m_GridCountY)
+                if (tempX < m_GridCountX && tempX >= 0 && tempY >= 0 && tempY < m_GridCountY)
                 {
                     neighborList.Add(m_Grid[tempX, tempY]);
                 }

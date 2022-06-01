@@ -31,6 +31,8 @@ public class FindPath : MonoBehaviour
         openList.Clear();
         closeSet.Clear();
         openList.Add(startNode);
+		Debug.Log($"start:{startNode.m_GridX}, {startNode.m_GridY}");
+		Debug.Log($"end:{endNode.m_GridX}, {endNode.m_GridY}");
         int count = openList.Count;
         while (count > 0)
         {
@@ -44,12 +46,14 @@ public class FindPath : MonoBehaviour
                     currentNode = node;
                 }
             }
+            Debug.Log($"设置当前点为：{currentNode.m_GridX}, {currentNode.m_GridY}");
             // 把当前节点从开启列表中移除，并加入到关闭列表中
             openList.Remove(currentNode);
             closeSet.Add(currentNode);
             // 如果是目的节点，返回
             if (currentNode == endNode)
             {
+                Debug.Log("===============寻到终点");
                 GeneratePath(startNode, endNode);
                 return;
             }
@@ -65,6 +69,7 @@ public class FindPath : MonoBehaviour
                 // 如果新路径到相邻点的距离更短 或者不在开启列表中
                 if (gCost < node.m_gCost || !openList.Contains(node))
                 {
+                    Debug.Log($"设置节点代价：{node.m_GridX}, {node.m_GridY} 为 (f:{gCost+ GetDistanceNodes(node, endNode)},g:{gCost}, h:({GetDistanceNodes(node, endNode)})) (gCost < node.m_gCost:{gCost < node.m_gCost}, openList.Contains(node):{openList.Contains(node)})");
                     // 更新相邻点的F，G，H
                     node.m_gCost = gCost;
                     node.m_hCost = GetDistanceNodes(node, endNode);
