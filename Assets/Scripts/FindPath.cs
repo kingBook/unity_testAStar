@@ -112,13 +112,14 @@ public class FindPath : MonoBehaviour
     {
         int deltaX = Mathf.Abs(node1.m_GridX - node2.m_GridX);
         int deltaY = Mathf.Abs(node1.m_GridY - node2.m_GridY);
-        if (deltaX > deltaY)
+        /*if (deltaX > deltaY)
         {
             return deltaY * 14 + 10 * (deltaX - deltaY);
         }
         else
         {
             return deltaX * 14 + 10 * (deltaY - deltaX);
-        }
+        }*/
+        return deltaX+deltaY;
     }
 }
