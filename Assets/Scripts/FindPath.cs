@@ -33,12 +33,12 @@ public class FindPath : MonoBehaviour
         openList.Add(startNode);
 		Debug.Log($"start:{startNode.m_GridX}, {startNode.m_GridY}");
 		Debug.Log($"end:{endNode.m_GridX}, {endNode.m_GridY}");
-        int count = openList.Count;
-        while (count > 0)
+        //int count = openList.Count;
+        while (openList.Count > 0)
         {
             // 寻找开启列表中的F最小的节点，如果F相同，选取H最小的
             Node currentNode = openList[0];
-            for (int i = 0; i < count; i++)
+            for (int i = 0,len=openList.Count; i < len; i++)
             {
                 Node node = openList[i];
                 if (node.FCost < currentNode.FCost || node.FCost == currentNode.FCost && node.m_hCost < currentNode.m_hCost)
@@ -46,7 +46,7 @@ public class FindPath : MonoBehaviour
                     currentNode = node;
                 }
             }
-            Debug.Log($"设置当前点为：{currentNode.m_GridX}, {currentNode.m_GridY}");
+            Debug.Log($"设置当前点且加入关闭列表：{currentNode.m_GridX}, {currentNode.m_GridY}");
             // 把当前节点从开启列表中移除，并加入到关闭列表中
             openList.Remove(currentNode);
             closeSet.Add(currentNode);
