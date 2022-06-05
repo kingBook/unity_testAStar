@@ -94,11 +94,12 @@ public class FindPath : MonoBehaviour
     {
         Stack<Node> path = new Stack<Node>();
         Node node = endNode;
-        while (node.m_Parent != startNode)
+        while (node != startNode)
         {
             path.Push(node);
             node = node.m_Parent;
         }
+        path.Push(startNode);
         m_Grid.m_Path = path;
     }
 
